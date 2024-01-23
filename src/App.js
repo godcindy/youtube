@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import { SearchBar, VideoDetail, VideoList } from "./components";
-
+import './App.css'
 import youtube from "./api/youtube";
 
 class App extends React.Component {
@@ -22,8 +22,8 @@ class App extends React.Component {
     const response = await youtube.get("search", {
       params: {
         part: "snippet",
-        maxResults: 5,
-        key: "AIzaSyAV_CRA9hKtvdoMrvAV3w4g58hiVsRDIBQ",
+        maxResults: 3,
+        key: process.env.REACT_APP_API_KEY,
         q: searchTerm,
       },
     });
@@ -37,10 +37,11 @@ class App extends React.Component {
   render() {
     const { selectedVideo, videos } = this.state;
     return (
-      <Grid justify="center" container spacing={5}>
+       <Grid justify="center" container spacing={5}>
         <Grid item xs={10}>
           <Grid container spacing={5}>
             <Grid item xs={10}>
+              <h1>Welcome to Utube</h1>
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
             <Grid item xs={8}>
